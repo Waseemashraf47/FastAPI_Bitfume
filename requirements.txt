@@ -1,0 +1,60 @@
+fastapi
+uvicorn
+SQLAlchemy
+passlib
+bcrypt
+python-jose
+python-multipart
+INFO:     127.0.0.1:65306 - "POST /login HTTP/1.1" 500 Internal 
+Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "G:\FAST API\fastapi-env\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 377, in run_asgi
+    result = await app(self.scope, self.receive, self.send)
+  File "G:\FAST API\fastapi-env\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 75, in __call__
+    return await self.app(scope, receive, send)
+  File "G:\FAST API\fastapi-env\lib\site-packages\fastapi\applications.py", line 212, 
+in __call__
+    await super().__call__(scope, receive, send)
+  File "G:\FAST API\fastapi-env\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "G:\FAST API\fastapi-env\lib\site-packages\starlette\middleware\errors.py", line 181, in __call__
+    raise exc
+  File "G:\FAST API\fastapi-env\lib\site-packages\starlette\middleware\errors.py", line 159, in __call__
+    await self.app(scope, receive, _send)
+  File "G:\FAST API\fastapi-env\lib\site-packages\starlette\exceptions.py", line 82, in __call__
+    raise exc
+  File "G:\FAST API\fastapi-env\lib\site-packages\starlette\exceptions.py", line 71, in __call__
+    await self.app(scope, receive, sender)
+  File "G:\FAST API\fastapi-env\lib\site-packages\starlette\routing.py", line 656, in 
+__call__
+    await route.handle(scope, receive, send)
+  File "G:\FAST API\fastapi-env\lib\site-packages\starlette\routing.py", line 259, in 
+handle
+    await self.app(scope, receive, send)
+  File "G:\FAST API\fastapi-env\lib\site-packages\starlette\routing.py", line 61, in app
+    response = await func(request)
+  File "G:\FAST API\fastapi-env\lib\site-packages\fastapi\routing.py", line 226, in app
+    raw_response = await run_endpoint_function(
+  File "G:\FAST API\fastapi-env\lib\site-packages\fastapi\routing.py", line 161, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "G:\FAST API\fastapi-env\lib\site-packages\starlette\concurrency.py", line 39, 
+in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "G:\FAST API\fastapi-env\lib\site-packages\anyio\to_thread.py", line 28, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(func, *args, cancellable=cancellable,
+  File "G:\FAST API\fastapi-env\lib\site-packages\anyio\_backends\_asyncio.py", line 818, in run_sync_in_worker_thread
+    return await future
+  File "G:\FAST API\fastapi-env\lib\site-packages\anyio\_backends\_asyncio.py", line 754, in run
+    result = context.run(func, *args)
+  File "G:\FAST API\.\blog\routers\authentication.py", line 19, in login
+    if not Hash.verify(user.password,  request.password):
+  File "G:\FAST API\.\blog\hashing.py", line 14, in verify
+    return pwd_cxt.verify(plain_password,hashed_password)
+  File "G:\FAST API\fastapi-env\lib\site-packages\passlib\context.py", line 2343, in verify
+    record = self._get_or_identify_record(hash, scheme, category)
+  File "G:\FAST API\fastapi-env\lib\site-packages\passlib\context.py", line 2031, in _get_or_identify_record
+    return self._identify_record(hash, category)
+  File "G:\FAST API\fastapi-env\lib\site-packages\passlib\context.py", line 1132, in identify_record
+    raise exc.UnknownHashError("hash could not be identified")
+passlib.exc.UnknownHashError: hash could not be identified
